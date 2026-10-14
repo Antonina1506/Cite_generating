@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in Business 2025 — Закрытый бизнес-форум</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --bg: #0f172a;
+    --bg-soft: #1e293b;
+    --bg-elevated: #273449;
+    --accent: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: rgba(148, 163, 184, 0.12);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 6rem 0 4rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(56, 189, 248, 0.15) 0%,
+      rgba(56, 189, 248, 0) 60%
+    );
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero__badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title span {
+    background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+  }
+
+  .hero__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+  }
+
+  .hero__meta-item strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--bg);
+    background: var(--accent);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+  }
+
+  .btn:hover::after {
+    opacity: 1;
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .btn--ghost:hover {
+    background: var(--bg-soft);
+    border-color: var(--accent);
+    box-shadow: none;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  .section__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section__label {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .section__desc {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 1rem auto 0;
+  }
+
+  /* ===== SPEAKERS ===== */
+  .speakers {
+    background: linear-gradient(180deg, transparent 0%, rgba(30, 41, 59, 0.3) 50%, transparent 100%);
+  }
+
+  .speakers__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .speakers__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .speakers__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .speaker {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .speaker::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .speaker:hover {
+    transform: translateY(-6px);
+    border-color: rgba(56, 189, 248, 0.3);
+    background: var(--bg-elevated);
+  }
+
+  .speaker:hover::before {
+    opacity: 1;
+  }
+
+  .speaker__photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .speaker__photo::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), transparent);
+    z-index: -1;
+    opacity: 0.5;
+  }
+
+  .speaker--1 .speaker__photo {
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+  }
+  .speaker--2 .speaker__photo {
+    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+  }
+  .speaker--3 .speaker__photo {
+    background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  }
+
+  .speaker__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+  }
+
+  .speaker__role {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .speaker__bio {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  /* ===== TIMER ===== */
+  .timer {
+    text-align: center;
+  }
+
+  .timer__countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 640px) {
+    .timer__countdown {
+      gap: 1.25rem;
+    }
+  }
+
+  .timer__block {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem 0.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .timer__block:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .timer__block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .timer__number {
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+  }
+
+  .timer__block:hover .timer__number {
+    color: var(--accent);
+  }
+
+  .timer__label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 0.75rem;
+    font-weight: 500;
+  }
+
+  .timer__event {
+    margin-top: 2.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .timer__event strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    margin-top: 2rem;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .footer__brand {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer__brand-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), #a78bfa);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .footer__about {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    max-width: 380px;
+  }
+
+  .footer__col-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .footer__contacts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer__contacts a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer__contacts a:hover {
+    color: var(--accent);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  /* ===== MODAL ===== */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+
+  .modal.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal__content {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    max-width: 440px;
+    width: 100%;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.3s;
+    position: relative;
+  }
+
+  .modal.is-open .modal__content {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .modal__close:hover {
+    background: var(--bg-elevated);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  .modal__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal__desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form__group {
+    margin-bottom: 1rem;
+  }
+
+  .form__label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .form__input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+
+  .form__input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+  }
+
+  .form__submit {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .form__success {
+    text-align: center;
+    padding: 1rem 0;
+    display: none;
+  }
+
+  .form__success.is-visible {
+    display: block;
+  }
+
+  .form__success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin: 0 auto 1rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero__content">
+      <div class="hero__badge">Закрытое мероприятие · по приглашениям</div>
+      <h1 class="hero__title">
+        AI in Business <span>2025</span>
+      </h1>
+      <p class="hero__subtitle">
+        Однодневный форум для собственников и топ-менеджеров, где искусственный интеллект превращается в конкретные бизнес-результаты.
+      </p>
+      <div class="hero__meta">
+        <div class="hero__meta-item">📅 <strong>15 мая 2025</strong></div>
+        <div class="hero__meta-item">📍 <strong>Москва, Сити</strong></div>
+        <div class="hero__meta-item">👥 <strong>до 200 гостей</strong></div>
+      </div>
+      <button class="btn" id="registerBtn">
+        Зарегистрироваться →
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- SPEAKERS -->
+<section class="speakers" id="speakers">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__label">Спикеры</span>
+      <h2 class="section__title">Те, кто уже внедряет ИИ в бизнес</h2>
+      <p class="section__desc">Практики, а не теоретики. Каждый из них управляет проектами с бюджетом от $1M и делится реальными кейсами.</p>
+    </div>
+
+    <div class="speakers__grid">
+      <article class="speaker speaker--1">
+        <div class="speaker__photo">АК</div>
+        <h3 class="speaker__name">Анна Королёва</h3>
+        <div class="speaker__role">CEO · NeuralWorks</div>
+        <p class="speaker__bio">Построила AI-платформу для ритейла с выручкой $40M. Эксперт по внедрению LLM в клиентский сервис.</p>
+      </article>
+
+      <article class="speaker speaker--2">
+        <div class="speaker__photo">ДМ</div>
+        <h3 class="speaker__name">Дмитрий Морозов</h3>
+        <div class="speaker__role">CTO · FinTech Group</div>
+        <p class="speaker__bio">Внедрил ML-скоринг, сокративший риски на 37%. Спикер конференций AI Journey и Data Fest.</p>
+      </article>
+
+      <article class="speaker speaker--3">
+        <div class="speaker__photo">ЕС</div>
+        <h3 class="speaker__name">Елена Савельева</h3>
+        <div class="speaker__role">Head of AI · Global Retail</div>
+        <p class="speaker__bio">Руководит командой из 60 инженеров. Автоматизировала 70% операционных процессов международной сети.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TIMER -->
+<section class="timer" id="timer">
+  <div class="container">
+    <div class="section__header">
+      <span class="section__label">Обратный отсчёт</span>
+      <h2 class="section__title">До начала форума осталось</h2>
+    </div>
+
+    <div class="timer__countdown" id="countdown">
+      <div class="timer__block">
+        <div class="timer__number" id="days">00</div>
+        <div class="timer__label">Дней</div>
+      </div>
+      <div class="timer__block">
+        <div class="timer__number" id="hours">00</div>
+        <div class="timer__label">Часов</div>
+      </div>
+      <div class="timer__block">
+        <div class="timer__number" id="minutes">00</div>
+        <div class="timer__label">Минут</div>
+      </div>
+      <div class="timer__block">
+        <div class="timer__number" id="seconds">00</div>
+        <div class="timer__label">Секунд</div>
+      </div>
+    </div>
+
+    <p class="timer__event">
+      Старт: <strong>15 мая 2025, 10:00 MSK</strong>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacts">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">
+          <span class="footer__brand-mark">AI</span>
+          AI in Business 2025
+        </div>
+        <p class="footer__about">
+          Закрытый бизнес-форум для лидеров, которые принимают решения о внедрении искусственного интеллекта в своих компаниях.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer__col-title">Контакты</h4>
+        <ul class="footer__contacts">
+          <li><a href="mailto:hello@aibusiness2025.ru">hello@aibusiness2025.ru</a></li>
+          <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+          <li><a href="#">Telegram-бот</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer__col-title">Организатор</h4>
+        <ul class="footer__contacts">
+          <li><a href="#">Business Club Pro</a></li>
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Оферта</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2025 AI in Business. Все права защищены.</span>
+      <span>Сделано с ❤️ для бизнеса будущего</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal__content">
+    <button class="modal__close" id="modalClose" aria-label="Закрыть">×</button>
+    <h3 class="modal__title">Регистрация</h3>
+    <p class="modal__desc">Оставьте заявку — менеджер свяжется с вами в течение часа и пришлёт персональное приглашение.</p>
+
+    <form id="regForm">
+      <div class="form__group">
+        <label class="form__label" for="name">Имя и фамилия</label>
+        <input class="form__input" type="text" id="name" required placeholder="Иван Петров">
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="company">Компания и должность</label>
+        <input class="form__input" type="text" id="company" required placeholder="ООО «Ромашка», CEO">
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="email">E-mail</label>
+        <input class="form__input" type="email" id="email" required placeholder="you@company.com">
+      </div>
+      <button type="submit" class="btn form__submit">Отправить заявку</button>
+    </form>
+
+    <div class="form__success" id="formSuccess">
+      <div class="form__success-icon">✓</div>
+      <h3 class="modal__title">Заявка принята</h3>
+      <p class="modal__desc">Мы свяжемся с вами в ближайшее время.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== COUNTDOWN =====
+  (function () {
+    const targetDate = new Date('2025-05-15T10:00:00+03:00').getTime();
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function update() {
+      const now = Date.now();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = pad(days);
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+      secondsEl.textContent = pad(seconds);
+    }
+
+    update();
+    setInterval(update, 1000);
+  })();
+
+  // ===== MODAL =====
+  (function () {
+    const modal = document.getElementById('modal');
+    const openBtn = document.getElementById('registerBtn');
+    const closeBtn = document.getElementById('modalClose');
+    const form = document.getElementById('regForm');
+    const success = document.getElementById('formSuccess');
+
+    function openModal() {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+      setTimeout(function () {
+        closeModal();
+        setTimeout(function () {
+          form.style.display = '';
+          form.reset();
+          success.classList.remove('is-visible');
+        }, 400);
+      }, 2200);
+    });
+  })();
+</script>
+
+</body>
+</html>
